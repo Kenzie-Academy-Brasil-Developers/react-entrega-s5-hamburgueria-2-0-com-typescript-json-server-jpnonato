@@ -92,3 +92,4 @@ export const Mark = styled.div`
         color: var(--secondary);
     }
 `
+

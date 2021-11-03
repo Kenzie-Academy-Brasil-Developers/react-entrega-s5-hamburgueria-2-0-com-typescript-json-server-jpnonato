@@ -9,6 +9,8 @@ export interface Product{
     name: string,
     type: string,
     img: string,
+    code?:number
+    quantity?: number,
     price: number
 }
 
@@ -19,17 +21,31 @@ export interface SignInData {
 
 export interface SignUpData{
     email: string,
-    password: string
+    password: string,
+    cart: Product[]
 }
 
 export interface AppContextData {
     catalogue: Product[]
-    cart: Product[]
+    cartList: Product[]
     error: string
     registerError: string
     token: string
+    plus: (index: number) => void
+    minus: (index: number) => void
     signIn: (userData: SignInData) => void
     signUp: (registerData: SignUpData) => void
-    addToCart: (item: Product, userId: string) => void
+    addToCart: (item: Product) => void
+    removeToCart: (item: Product) => void
+    toRegister: () => void
+    toCart:() => void
+    toLogin: () => void
+    toHome: () => void
 
+}
+
+export interface RegisterData{
+    name: string,
+    email: string,
+    password: string
 }

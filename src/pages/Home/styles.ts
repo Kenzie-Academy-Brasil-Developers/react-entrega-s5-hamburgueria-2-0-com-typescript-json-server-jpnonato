@@ -65,11 +65,19 @@ export const ListContainer = styled.div`
     flex-direction: column;
     margin-top: 15px;
 
+    
+
     @media screen and (min-width: 750px){
         flex-direction: row;
         flex-wrap: wrap;
        
-        
+        .list_container{
+            width: 58%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 850px;
+        }
         img{
             width: 40%;
             height: 50%;
@@ -90,5 +98,14 @@ export const Mark = styled.div`
     }
     h2{
         color: var(--secondary);
+    }
+`
+
+
+export const InputSearch = styled.input`
+
+    display: none;
+    @media screen and (min-width: 600px){ 
+        display: inline-block;
     }
 `

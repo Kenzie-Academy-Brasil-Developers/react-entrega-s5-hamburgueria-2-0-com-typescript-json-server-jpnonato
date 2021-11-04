@@ -2,6 +2,8 @@ import { Child, Product, SignInData, SignUpData, AppContextData} from '../interf
 import {createContext, useContext, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import axios from 'axios'
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 const AppContext = createContext({} as AppContextData)
@@ -26,7 +28,6 @@ export const AppProvider = ({children}: Child) => {
         
         axios.post("https://json-server-hamburgeria-kenzie.herokuapp.com/login", userData)
         .then((response) => {
-           console.log(response.data.user.cart)
             localStorage.setItem("token", response.data.accessToken);
             localStorage.setItem("userId", response.data.user.id)
             localStorage.setItem("cart", response.data.user.cart)
@@ -34,17 +35,23 @@ export const AppProvider = ({children}: Child) => {
             setToken(response.data.accessToken);
 
             setCartList(response.data.user.cart)
+
+            if(cartList.length === 0){
+                toast.info("seu carrinho está vazio")
+            }
           
             history.push(`/home/${response.data.user.id}`);
         })
-        .catch((err) => setError(err));
+        .catch((err) => toast.error('E-mail e/ou senha inválidos!')); 
 
     };
 
     const signUp = (registerData: SignUpData) => {
         axios.post("https://json-server-hamburgeria-kenzie.herokuapp.com/users", registerData)
-        .then((resp) => console.log(resp))
-        .catch((err) => console.log(err))
+        .then((resp) => {
+            toast.success('Conta criada com sucesso!')
+            return history.push("/")
+        }).catch((err) => toast.error('E-mail já cadastrado!'))
     }
 
 
@@ -56,10 +63,7 @@ export const AppProvider = ({children}: Child) => {
         useEffect(() => {
             axios.get(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, 
             {headers : {Authorization: `Bearer ${token}`}})
-            .then((resp) => {
-                setCartList(resp.data.cart)
-                localStorage.setItem("cart", JSON.stringify(resp.data.cart))
-            })
+            .then((resp) => {setCartList(resp.data.cart)})
         },[cartList])
 
     const addToCart = (item: Product) => {
@@ -91,27 +95,31 @@ export const AppProvider = ({children}: Child) => {
        
         axios.patch(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, {cart: result }, {
             headers : {Authorization: `Bearer ${token}`}}).then((resp) => localStorage.setItem("cart", JSON.stringify(resp.data.cart))) 
-        console.log(JSON.parse(localStorage.getItem("cart") || "{}"))
+    }
+
+    const removeAll = () => {
+
+        axios.patch(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, 
+        {cart: []}, {headers : {Authorization: `Bearer ${token}`}})
+        // .then((resp) => toast.warning('Itens removidos com sucesso!'))
+
     }
     
-    const plus = (index: number) => {
-       console.log(localStorage.getItem("cart"))
-    }
-
-    const minus = (index: number) => {
-
-    }
+   
 
     const toRegister = () => history.push("/register")
-    const toLogin = () => history.push("/")
     const toHome = () => history.push(`/home/${id}`)
     const toCart = () => history.push("/cart")
+    const toLogin = () => {
+        localStorage.clear()
+        history.push("/")
+    }
 
 
     return (
         <AppContext.Provider 
         value={{catalogue, cartList, error, registerError, token, 
-        signIn, signUp, addToCart, removeToCart, plus, minus, 
+        signIn, signUp, addToCart, removeToCart, removeAll,
         toRegister, toLogin, toCart, toHome}}
         >
             {children}
@@ -151,5 +159,13 @@ export const AppProvider = ({children}: Child) => {
         axios.patch(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, {cart: result }, {
         headers : {Authorization: `Bearer ${token}`}});
     }
+
+     // const plus = (index: number) => {
+    //    console.log(localStorage.getItem("cart"))
+    // }
+
+    // const minus = (index: number) => {
+
+    // }
     
 */ 

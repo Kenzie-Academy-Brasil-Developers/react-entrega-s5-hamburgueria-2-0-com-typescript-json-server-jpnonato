@@ -68,6 +68,14 @@ export const ListContainer = styled.div`
     @media screen and (min-width: 750px){
         flex-direction: row;
         flex-wrap: wrap;
+
+        .list_container{
+            width: 58%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 850px;
+        }
        
         
         img{
@@ -90,6 +98,34 @@ export const Mark = styled.div`
     }
     h2{
         color: var(--secondary);
+    }
+`
+
+export const InputSearch = styled.input`
+
+    display: none;
+    @media screen and (min-width: 600px){ 
+        display: inline-block;
+    }
+`
+
+export const Container = styled.div`
+    
+    .buttons{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    @media screen and (min-width: 600px){ 
+        
+        .buttons{
+            
+            height: 8vh;
+        }
     }
 `
 

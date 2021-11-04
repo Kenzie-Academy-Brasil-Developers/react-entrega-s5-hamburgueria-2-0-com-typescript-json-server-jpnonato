@@ -31,12 +31,13 @@ export interface AppContextData {
     error: string
     registerError: string
     token: string
-    plus: (index: number) => void
-    minus: (index: number) => void
+    // plus: (index: number) => void
+    // minus: (index: number) => void
     signIn: (userData: SignInData) => void
     signUp: (registerData: SignUpData) => void
     addToCart: (item: Product) => void
     removeToCart: (item: Product) => void
+    removeAll: () => void
     toRegister: () => void
     toCart:() => void
     toLogin: () => void

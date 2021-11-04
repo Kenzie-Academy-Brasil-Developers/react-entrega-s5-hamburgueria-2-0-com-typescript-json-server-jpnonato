@@ -1,7 +1,7 @@
-
 import { useAppProvider } from "../../provider/appProvider"
 import { useHistory, useParams } from "react-router"
-import { ProductDisplay, ListContainer, Mark }from "./styles"
+import { ProductDisplay, ListContainer, Mark, InputSearch }from "./styles"
+import { useState } from "react"
 
 import AppBar from '@material-ui/core/AppBar';
 import {  Button } from '@material-ui/core'
@@ -33,6 +33,8 @@ const Home = () => {
 
     const{catalogue, addToCart, cartList, toCart, toLogin} = useAppProvider()
 
+    const [typedText, setTypedText] = useState<String>('')
+
     return (
         <div>
             <nav>
@@ -43,8 +45,12 @@ const Home = () => {
                                 <h1>Burger</h1>
                                 <h2>Kenzie</h2>
                             </Mark>
-                            <section>
-
+                            <section style={{display: "flex", alignItems: "center"}}>
+                            <InputSearch type='text' 
+                            onChange={(e) => setTypedText(e.target.value)}
+                            style={{fontFamily: "Arial, FontAwesome", border: "grey solid 1px", borderRadius: "3px", fontSize: "18px"}}
+                            placeholder="&#xF002; Pesquisar..."
+                            />
                             <IconButton  onClick={toCart}>
                                 <StyledBadge badgeContent={cartList.length} 
                                 color="primary" style={{ marginRight: '12px'}}
@@ -66,8 +72,19 @@ const Home = () => {
                 </Box>
             </nav>
             <ListContainer> 
+                <div className="list_container">
+
+                
             {
-                catalogue.map((elt, index) => {
+                catalogue.filter((elt) => {
+
+                    if(typedText === ''){
+                        return catalogue
+                    } 
+
+                    return elt.name.toLowerCase() === typedText.toLowerCase()
+                        
+                    }).map((elt, index) => {
 
                     return(
                         <ProductDisplay key={index}>
@@ -84,6 +101,7 @@ const Home = () => {
                     )
                 })
             }
+            </div> 
             </ListContainer>
         </div>
     )

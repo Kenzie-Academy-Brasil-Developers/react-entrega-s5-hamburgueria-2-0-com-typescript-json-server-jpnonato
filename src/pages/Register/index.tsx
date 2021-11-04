@@ -1,12 +1,13 @@
 
+import ShoppingBasketOutlinedIcon  from '@material-ui/icons/ShoppingBasketOutlined'
 import { TextField, Button } from '@material-ui/core'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { useHistory, Link } from 'react-router-dom'
 import { RegisterData } from '../../interfaces'
-import ShoppingBasketOutlinedIcon  from '@material-ui/icons/ShoppingBasketOutlined'
 import { useAppProvider } from '../../provider/appProvider'
 import { Countainer, Form } from './styles'
+
 
 import * as yup from 'yup'
 
@@ -38,8 +39,6 @@ const Register = () => {
           cart: []
       }
       signUp(registerData)
-      console.log(registerData)
-      history.push("/")
   }
 
   return(
@@ -63,7 +62,7 @@ const Register = () => {
           </section>
           <div className='input_container'>
             <TextField 
-                label='name'
+                label='Nome'
                 type='text'
                 margin='normal'
                 variant="outlined"
@@ -111,7 +110,7 @@ const Register = () => {
                 helperText={errors.confirm_password?.message}
               />      
         </div>        
-          <Button style={{width:'90%'}} size="large"  type='submit' variant='contained' color='primary'>
+          <Button style={{width:'90%', marginTop: '7px'}} size="large"  type='submit' variant='contained' color='primary'>
               cadastrar
           </Button>
       </Form>

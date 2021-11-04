@@ -5,13 +5,16 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import { useAppProvider } from "../../provider/appProvider"
 import { TextField, Button } from '@material-ui/core'
 import { Countainer, Form } from './styles'
+import { useHistory} from 'react-router-dom'
 import * as yup from 'yup'
 import ShoppingBasketOutlinedIcon  from '@material-ui/icons/ShoppingBasketOutlined'
+import { toast } from "react-toastify"
 
 const Login = () => {
 
-   const {error, token, signIn, toRegister} = useAppProvider()
+   const { signIn, toRegister } = useAppProvider()
 
+   const history = useHistory()
   
    const schema = yup.object().shape({
     email: yup.string().required(''),
@@ -73,12 +76,11 @@ const Login = () => {
                         helperText={errors.password?.message}
                         fullWidth
                     />          
-                    <Button  style={{width:'90%'}} type='submit' variant='contained' color='primary'>
+                    <Button  style={{width:'100%', marginTop: '7px'}} type='submit' variant='contained' color='primary'>
                         Logar
                     </Button>
-                    <p style={{color: 'red'}}>{ typeof error === "object" ? 'E-mail e/ou senha inválidos*' : '' }</p>
                     <h3>Crie sua conta para saborear muitas delícias e matar sua fome!</h3>
-                    <Button onClick={toRegister} style={{width:'90%', backgroundColor: 'var(--grey-light)', color: 'var(--grey-medium)'}} size="large"  type='submit' variant='contained' color='primary'>
+                    <Button onClick={toRegister} style={{width:'100%', backgroundColor: 'var(--grey-light)', color: 'var(--grey-medium)'}} size="large"  type='submit' variant='contained' color='primary'>
                         cadastrar
                     </Button>
                 </div>

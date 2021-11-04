@@ -7,7 +7,7 @@ export const Form = styled.form`
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        height: 385px;
+        height: 420px;
         width: 90%;
         margin: auto;
         max-width: 375px;

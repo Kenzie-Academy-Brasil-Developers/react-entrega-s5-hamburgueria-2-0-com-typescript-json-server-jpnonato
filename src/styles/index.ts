@@ -5,12 +5,12 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 
   :root{
-    --grey-dark: ${grey[600]};
-    --grey-medium: ${grey[300]};
-    --grey-light: ${grey[100] };
-    --grey-white: ${grey[50]};
-    --secondary: ${red[400]};
-    --primary:  ${green[800]};
+    --grey-dark: #333333;
+    --grey-medium: #828282; 
+    --grey-light: #E0E0E0;
+    --grey-white: #F5F5F5;
+    --secondary: #EB5757;
+    --primary:  #27AE60;
   }
   body {
     margin: 0;

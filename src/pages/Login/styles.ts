@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { green, red, yellow, blue, grey } from '@material-ui/core/colors'
 
 export const Form = styled.form`
        
@@ -13,10 +12,10 @@ export const Form = styled.form`
         max-width: 375px;
         border-radius: 4px;
         font-family: inter, sans-serif;
-        border: ${grey[100]} solid 2px;
+        border: var(--grey-light) solid 2px;
 
         h3{
-            color: ${grey[300]};
+            color: var(--grey-medium);
             font-size: 10px;
         }
 
@@ -29,12 +28,12 @@ export const Form = styled.form`
 
             h2{
                 font-weight: bold;
-                color: ${grey[600]};
+                color: var(--grey-dark);
             }
            
             a{
                 text-decoration:none;
-                color: ${grey[300]}
+                color: var(--grey-medium);
             }
            
       

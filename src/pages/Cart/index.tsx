@@ -1,8 +1,7 @@
 import { useAppProvider } from "../../provider/appProvider"
 import { ProductDisplay, ListContainer, Mark, InputSearch, Container }from "./styles"
-import { useHistory, useParams } from "react-router"
+import { useHistory } from "react-router"
 import { Product } from "../../interfaces"
-import { string } from "yup/lib/locale"
 import { useState } from 'react'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -14,10 +13,7 @@ import Badge from '@material-ui/core/Badge';
 import { styled } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import InputTwoToneIcon from '@material-ui/icons/InputTwoTone';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { CountertopsOutlined } from "@mui/icons-material"
+
 
 
 const Cart = () => {
@@ -33,17 +29,6 @@ const Cart = () => {
     
     
     const [typedText, setTypedText] = useState<String>('')
-   
-    const StyledBadge = styled(Badge)(({ theme }) => ({
-        '& .MuiBadge-badge': {
-          right: -3,
-          top: 13,
-          border: `2px solid ${theme.palette.background.paper}`,
-          padding: '0 4px',
-        },
-    }));
-    
-    console.log(cartList)
 
     return (
         <div>

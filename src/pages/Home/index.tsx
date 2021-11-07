@@ -1,5 +1,4 @@
 import { useAppProvider } from "../../provider/appProvider"
-import { useHistory, useParams } from "react-router"
 import { ProductDisplay, ListContainer, Mark, InputSearch }from "./styles"
 import { useState } from "react"
 
@@ -10,7 +9,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { styled } from '@material-ui/core/styles';
-import HomeIcon from '@material-ui/icons/Home';
 import InputTwoToneIcon from '@material-ui/icons/InputTwoTone';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
@@ -28,8 +26,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const Home = () => {
-
-    const history = useHistory()
 
     const{catalogue, addToCart, cartList, toCart, toLogin} = useAppProvider()
 

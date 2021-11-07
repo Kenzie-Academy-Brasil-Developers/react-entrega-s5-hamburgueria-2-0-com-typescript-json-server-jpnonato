@@ -5,16 +5,12 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import { useAppProvider } from "../../provider/appProvider"
 import { TextField, Button } from '@material-ui/core'
 import { Countainer, Form } from './styles'
-import { useHistory} from 'react-router-dom'
-import * as yup from 'yup'
 import ShoppingBasketOutlinedIcon  from '@material-ui/icons/ShoppingBasketOutlined'
-import { toast } from "react-toastify"
+import * as yup from 'yup'
 
 const Login = () => {
 
    const { signIn, toRegister } = useAppProvider()
-
-   const history = useHistory()
   
    const schema = yup.object().shape({
     email: yup.string().required(''),

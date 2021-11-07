@@ -16,8 +16,6 @@ export const AppProvider = ({children}: Child) => {
 
         const [catalogue, setCatalogue] = useState<Product[]>([])
         const [cartList, setCartList] = useState<Product[]>([])
-        const [error, setError] = useState('')
-        const [registerError, setRegisterError] = useState('')
         const [token, setToken] = useState(
         () => localStorage.getItem("token") || ""
         );
@@ -101,7 +99,6 @@ export const AppProvider = ({children}: Child) => {
 
         axios.patch(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, 
         {cart: []}, {headers : {Authorization: `Bearer ${token}`}})
-        // .then((resp) => toast.warning('Itens removidos com sucesso!'))
 
     }
     
@@ -118,7 +115,7 @@ export const AppProvider = ({children}: Child) => {
 
     return (
         <AppContext.Provider 
-        value={{catalogue, cartList, error, registerError, token, 
+        value={{catalogue, cartList, token, 
         signIn, signUp, addToCart, removeToCart, removeAll,
         toRegister, toLogin, toCart, toHome}}
         >
@@ -128,44 +125,3 @@ export const AppProvider = ({children}: Child) => {
 
    
 }
-
-/*last version
-
-    const addToCart = (item: Product) => {
-
-        const newItem ={
-            name: item.name,
-            type: item.type,
-            img: item.img,
-            price: item.price,
-            code: Math.floor(Math.random()* (1000000 - 1) + 1),
-            quantity: 1
-        }
-
-        cartList.push(newItem)
-
-        axios.patch(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, {cart: cartList }, {
-        headers : {Authorization: `Bearer ${token}`}});
-    }
-
-    const removeToCart = (item: Product) => {
-        axios.get(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, 
-        {headers : {Authorization: `Bearer ${token}`}})
-        .then((resp) => setCartList(resp.data.cart))
-
-        const result = cartList.filter((elt: Product) => elt !== item)
-        
-       
-        axios.patch(`https://json-server-hamburgeria-kenzie.herokuapp.com/users/${id}`, {cart: result }, {
-        headers : {Authorization: `Bearer ${token}`}});
-    }
-
-     // const plus = (index: number) => {
-    //    console.log(localStorage.getItem("cart"))
-    // }
-
-    // const minus = (index: number) => {
-
-    // }
-    
-*/ 

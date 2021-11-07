@@ -3,7 +3,7 @@ import ShoppingBasketOutlinedIcon  from '@material-ui/icons/ShoppingBasketOutlin
 import { TextField, Button } from '@material-ui/core'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { useHistory, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { RegisterData } from '../../interfaces'
 import { useAppProvider } from '../../provider/appProvider'
 import { Countainer, Form } from './styles'
@@ -13,9 +13,7 @@ import * as yup from 'yup'
 
 const Register = () => {
 
-  const history = useHistory()
-
-  const {signUp, registerError} = useAppProvider()
+  const {signUp} = useAppProvider()
 
   const schema = yup.object().shape({
     

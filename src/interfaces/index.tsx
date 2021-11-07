@@ -28,11 +28,7 @@ export interface SignUpData{
 export interface AppContextData {
     catalogue: Product[]
     cartList: Product[]
-    error: string
-    registerError: string
     token: string
-    // plus: (index: number) => void
-    // minus: (index: number) => void
     signIn: (userData: SignInData) => void
     signUp: (registerData: SignUpData) => void
     addToCart: (item: Product) => void

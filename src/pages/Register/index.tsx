@@ -4,7 +4,7 @@ import { TextField, Button } from '@material-ui/core'
 import {useForm} from 'react-hook-form'
 import {yupResolver} from '@hookform/resolvers/yup'
 import { Link } from 'react-router-dom'
-import { RegisterData } from '../../interfaces'
+import { RegisterData, SignUpData} from '../../interfaces'
 import { useAppProvider } from '../../provider/appProvider'
 import { Countainer, Form } from './styles'
 
@@ -27,9 +27,9 @@ const Register = () => {
       register,
       handleSubmit,
       formState: {errors}
-  } = useForm({resolver: yupResolver(schema)})
+  } = useForm<SignUpData>({resolver: yupResolver(schema)}) 
 
-  const handleForm = (data: RegisterData) => {
+  const handleForm = (data: SignUpData) => {
 
       const registerData = {
           email: data.email,
@@ -42,7 +42,7 @@ const Register = () => {
   return(
     <Countainer>
       <div className='left_div'>
-        <section>
+        <section> 
           <h1>Burger</h1>
           <h2>Kenzie</h2>
         </section>

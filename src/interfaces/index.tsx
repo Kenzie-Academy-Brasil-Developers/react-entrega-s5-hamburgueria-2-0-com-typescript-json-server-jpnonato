@@ -22,6 +22,8 @@ export interface SignInData {
 export interface SignUpData{
     email: string,
     password: string,
+    confirm_password?: string,
+    name?: string,
     cart: Product[]
 }
 
@@ -42,7 +44,6 @@ export interface AppContextData {
 }
 
 export interface RegisterData{
-    name: string,
     email: string,
     password: string
 }
